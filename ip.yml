@@ -4,14 +4,14 @@
 
 
 ip:
-  name: "uvmt_riscv_st"
+  name: "cv32e40p"
   version: "1.0.0"
-  full-name: "Datum RISC-V UVM Library Self-Test Bench"
-  type: "DV"
-  sub-type: "UVM Test Bench"
-  sub-sub-type: "Library Self-Test"
+  full-name: "cv32e40p"
+  type: "RTL"
+  sub-type: "flist"
+  sub-sub-type: ""
   description: >
-    TODO Describe RISC-V
+    TODO Describe cv32e40p
   home-page: ""
   repo-uri: ""
   bugs: ""
@@ -22,37 +22,35 @@ ip:
   simulators-supported:
     - { name: "vivado", version: "2022.1" }
   tags: []
-  copyright-holders: ["Datum"]
-  licenses: ["All rights reserved."]
+  copyright-holders: []
+  licenses: []
 
 structure:
    scripts-path : "bin"
-   docs-path    : "docs"
-   examples-path: "examples"
-   src-path     : "src"
+   docs-path    : "scripts"
+   examples-path: "example_tb"
+   src-path     : "rtl"
 
 dependencies:
-  - { name: "uvm"          , version:  "1.2" }
-  - { name: "uvml"         , version: "~1.0" }
-  - { name: "uvml_ral"     , version: "~1.0" }
-  - { name: "uvml_logs"    , version: "~1.0" }
-  - { name: "uvma_obi"     , version: "~1.0" }
-  - { name: "uvma_cv_intr" , version: "~1.0" }
-  - { name: "uvma_cv_dbg"  , version: "~1.0" }
-  - { name: "uvma_cv_ctrl" , version: "~1.0" }
-  - { name: "uvml_riscv"   , version: "^"    }
-  - { name: "uvme_riscv_st", version: "^"    }
 
 hdl-src:
-  top-constructs: ["uvmt_riscv_st_tb", "uvml.uvml_sim_summary"]
-  directories: [".", "tb", "tests"]
-  top-files: [ "uvmt_riscv_st_pkg.sv" ]
-  tests-path: "tests"
-  test-name-template: "uvmt_riscv_st_{{ name }}_test_c"
+  top-constructs: ["cv32e40p_wrapper"]
+  directories: [
+    ".",
+    "include",
+    "vendor",
+    "vendor/pulp_platform_common_cells",
+    "vendor/pulp_platform_common_cells/include/common_cells",
+    "vendor/pulp_platform_common_cells/src",
+    "vendor/pulp_platform_common_cells/src/deprecated",
+    "vendor/pulp_platform_fpnew/src",
+    "vendor/pulp_platform_fpu_div_sqrt_mvp/hdl"
+  ]
+  top-files: [ "cv32e40p_wrapper.sv" ]
   flist:
-    metrics : "uvmt_riscv_st_pkg.flist"
-    riviera : "uvmt_riscv_st_pkg.flist"
-    questa  : "uvmt_riscv_st_pkg.flist"
-    vcs     : "uvmt_riscv_st_pkg.flist"
-    vivado  : "uvmt_riscv_st_pkg.flist.xsim"
-    xcelium : "uvmt_riscv_st_pkg.flist"
+    metrics : "cv32e40p.flist"
+    riviera : "cv32e40p.flist"
+    questa  : "cv32e40p.flist"
+    vcs     : "cv32e40p.flist"
+    vivado  : "cv32e40p.flist.xsim"
+    xcelium : "cv32e40p.flist"
